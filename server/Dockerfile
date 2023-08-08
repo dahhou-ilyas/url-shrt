@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:14-alpine
 
 ADD package.json /tmp/package.json
 
@@ -15,7 +15,7 @@ RUN rm -rf /src/node_modules && cp -a /tmp/node_modules /src/
 # Define working directory
 WORKDIR /src
 
-RUN npm run-script build
+RUN npm run builde
 
 RUN npm install pm2 -g
 
