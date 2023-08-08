@@ -2,6 +2,7 @@ import { Express, Request, Response } from "express";
 import {
   createShortUrl,
   handleRedirect,
+  getAnalytics
 } from "../controller/shortUrl.controller";
 import validateResourse from "../middleware/validateRessource";
 import shortUrlSchema from "../schemas/createShortUrl";
@@ -17,7 +18,7 @@ function routes(app: Express) {
 
   // app.get("/api/url/:shortId", getShortUrl);
 
-  // app.get("/api/analytics", getAnalytics);
+  app.get("/api/analytics", getAnalytics);
 }
 
 export default routes;
