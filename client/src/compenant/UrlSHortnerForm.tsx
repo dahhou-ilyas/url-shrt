@@ -7,6 +7,7 @@ import {SERVER_EXNDPOINT} from '../config'
 function UrlSHortnerForm():JSX.Element{
 
   const [destination,setDestination]=useState('')
+  const [shortUrl,setShortUrl]=useState<{shortId:string}|null>(null)
 
   async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
     e.preventDefault()
@@ -16,7 +17,8 @@ function UrlSHortnerForm():JSX.Element{
           destination,
         }
       ).then((resp)=>resp.data)
-      console.log(result);
+      setShortUrl(result)
+      console.log(shortUrl?.shortId);
     }catch(e){
       console.log(e);
     }
@@ -33,6 +35,10 @@ function UrlSHortnerForm():JSX.Element{
         />
         <Button type={"submit"}>CREATE SHORT URL</Button>
       </form>
+      {JSON.stringify(shortUrl)}
+      <a href={SERVER_EXNDPOINT+`/${shortUrl?.shortId}`}>
+        CLICK ME
+      </a>
     </Box>
   )
 }
