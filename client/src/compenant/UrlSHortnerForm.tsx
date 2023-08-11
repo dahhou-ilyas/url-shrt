@@ -26,19 +26,19 @@ function UrlSHortnerForm():JSX.Element{
   }
 
   return (
-    <Box pos={"relative"}>
+    <Box zIndex={2} pos={"relative"} backgroundColor={'whiteAlpha.800'} padding={'6'}>
       <form onSubmit={handleSubmit}>
-        destination:{destination}
-        <Input
-          onChange={(e:any)=>setDestination(e.target.value)}
-          placeholder='https://example.com'
-        />
-        <Button type={"submit"}>CREATE SHORT URL</Button>
+        <InputGroup>
+          <Input
+            onChange={(e:any)=>setDestination(e.target.value)}
+            placeholder='https://example.com'
+          />
+          <Button type={"submit"}>CREATE</Button>
+        </InputGroup>
       </form>
-      {JSON.stringify(shortUrl)}
-      <a href={SERVER_EXNDPOINT+`/${shortUrl?.shortId}`}>
-        CLICK ME
-      </a>
+        {shortUrl && (
+          <div style={{display:"flex",justifyContent:'center'}}>{SERVER_EXNDPOINT+`/${shortUrl?.shortId}`}</div>)}
+      
     </Box>
   )
 }
